@@ -9,6 +9,7 @@ window.addEventListener("mousemove", function(event) {
 
 window.addEventListener("click", function(event) {
   boids.push([event.clientX, event.clientY])
+  document.getElementById("boidCount").innerText = "Flock size: " + boids.length
 });
 
 function help() {
