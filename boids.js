@@ -13,11 +13,7 @@ window.addEventListener("click", function(event) {
 });
 
 function help() {
-  Swal.fire(
-    'Boids',
-    'Click to generate more followers, and move your mouse around to lead.',
-    'info'
-  )
+  document.getElementById("helpPop").hidden = document.getElementById("helpPop").hidden == true ? false : true
 }
 
 var boids = []

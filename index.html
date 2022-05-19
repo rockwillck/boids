@@ -8,12 +8,32 @@
 	   -moz-user-select: none;
 	   -ms-user-select: none;
 	}
+
+	.popup {
+		position: absolute;
+		z-index: 4;
+		text-align:center;
+		width: 50vw;
+		height:50vh;
+		top:25vh;
+		right:25vw;
+		background-color: rgba(255, 255, 255, 0.8);
+		border-color:black;
+		border-style: solid;
+		border-width: 2.5vmin;
+		border-radius: 5vmin;
+		font-family: Arial;
+	}
 </style>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <canvas style="width:100%; height:100%; position: absolute; top: 0; left: 0; right: 0; bottom:0;" id="boids-canvas"></canvas>
 <p style="position: absolute; z-index: 3; top: 0vmin; font-family: Arial;" id="boidCount">Flock size: 0</p>
 <p style="position: absolute; z-index: 3; top: 5vmin; font-family: Arial;" id="colItCount">Collision Iterations: 0</p>
-<div class="q" style="position: absolute; z-index: 2; background: black; color: white; border-radius: 2vmin; padding: 2vmin; font-family: Arial; font-size:3vmin; right: 2vmin;" onclick="help()">
+<div class="popup" hidden id="helpPop">
+	<h1>Boids</h1>
+	<p>Click to create a new follower. Move your mouse to move the leader.</p>
+	<pre>Press ? to close.</pre>
+</div>
+<div class="q" style="position: absolute; z-index: 4; background: black; color: white; border-radius: 2vmin; padding: 2vmin; font-family: Arial; font-size:3vmin; right: 2vmin;" onclick="help()">
 	?
 </div>
 <script id="script" src="boids.js"></script>
