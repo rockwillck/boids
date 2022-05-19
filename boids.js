@@ -24,6 +24,7 @@ var boids = []
 var attract = [canvas.width/2, canvas.height/2]
 const boidsRadius = 10
 let lastUpdate
+let frame = 1
 function animate() {
   requestAnimationFrame(animate)
   var now = Date.now();
@@ -31,7 +32,7 @@ function animate() {
   lastUpdate = now;
   ctx.fillStyle = `white`
   ctx.fillRect(0, 0, canvas.width, canvas.height)
-
+  ctx.lineWidth = '10'
 
   ctx.fillStyle = "blue"
   ctx.beginPath()
@@ -40,8 +41,8 @@ function animate() {
   ctx.fill()
   ctx.stroke()
 
+  if (frame % 10 == 0) {document.getElementById("colItCount").innerText = "Collision Iterations: " + Math.floor(dt*1000)}
   boids.forEach((boid, index) => {
-    ctx.lineWidth = '10'
     ctx.fillStyle = "red"
     ctx.beginPath()
     ctx.arc(boid[0], boid[1], boidsRadius, 0, 2*Math.PI)
@@ -58,7 +59,7 @@ function animate() {
           break
         }
       }
-      if (!broken || iter > 100) {
+      if (!broken || iter > dt*1000) {
         boid[0] += (Math.cos(degree)*(Math.sqrt((boid[0] - attract[0])**2 + (boid[1] - attract[1])**2) < boidsRadius*3 ? 3 : 5))*dt
         boid[1] += Math.sin(degree)*(Math.sqrt((boid[0] - attract[0])**2 + (boid[1] - attract[1])**2) < boidsRadius*3 ? 3 : 5)*dt
         break
@@ -66,6 +67,7 @@ function animate() {
       iter += 1
     } 
   })
+  frame += 1
 }
 
 animate()
